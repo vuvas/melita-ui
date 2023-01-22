@@ -1,0 +1,55 @@
+login-container {
+  background: rgb(6, 93, 148);
+  background: linear-gradient(
+    86deg,
+    rgba(6, 93, 148, 1) 0%,
+    rgba(41, 190, 118, 1) 100%
+  );
+}
+
+.login-form {
+  width: 60%;
+}
+.login-form p {
+  color: #888;
+  margin-bottom: 30px;
+}
+.login-form label {
+  display: inline-block;
+  color: #444;
+}
+.login-form input {
+  display: block;
+  height: 40px;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 18px;
+  margin-top: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.login-form div {
+  margin: 20px 0;
+}
+.login-form .forgot-password {
+  float: right;
+}
+.login-form .forgot-password a {
+  color: #111;
+  text-decoration: none;
+}
+.login-form button {
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #27ae60;
+  background-color: #27ae60;
+  color: #fff;
+  font-size: 18px;
+  padding: 0 25px;
+}
+.login-form button:hover {
+  opacity: 0.9;
+  color: #fff;
+}
