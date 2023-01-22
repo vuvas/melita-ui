@@ -15,4 +15,8 @@ export class AccountService {
     const url = `${this.BASE_URL}/login`;
     return this.http.post<User>(url, {username, password});
   }
+  logout(): Observable<any> {
+    const url = `${this.BASE_URL}/logout`;
+    return this.http.get<User>(url);
+  }
 }

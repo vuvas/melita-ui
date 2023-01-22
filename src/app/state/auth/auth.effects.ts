@@ -37,6 +37,13 @@ export class AuthEffects {
       ),
     { dispatch: false },
   );
-
+  logoutRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.logout),
+      exhaustMap((action) =>
+        this.accountService
+          .logout()
+    ),
+  ),);
 
 }
