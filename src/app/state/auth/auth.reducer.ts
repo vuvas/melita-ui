@@ -36,4 +36,9 @@ const _authReducer = createReducer(
 export function authReducer(state: any, action: any) {
   return _authReducer(state, action);
 }
+export const selectAuthState = createFeatureSelector<State>('auth');
 
+export const selectToken = createSelector(
+  selectAuthState,
+  (state) => state.token
+);
