@@ -11,8 +11,8 @@ export class AccountService {
   private BASE_URL = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
-  login(email: string, password: string): Observable<any> {
+  login(username: string, password: string): Observable<any> {
     const url = `${this.BASE_URL}/login`;
-    return this.http.post<User>(url, {email, password});
+    return this.http.post<User>(url, {username, password});
   }
 }
