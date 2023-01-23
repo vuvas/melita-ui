@@ -12,8 +12,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './state/auth/auth.reducer';
 import { AuthEffects } from './state/auth/auth.effects';
-import { OfferEffects } from './state/offer/offer.effects';
-import { offerReducer } from './state/offer/offer.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({

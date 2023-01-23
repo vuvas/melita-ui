@@ -1,6 +1,5 @@
-import { createReducer, on } from '@ngrx/store';
-import {loginFailure, loginRequest, loginSuccess, logout} from './auth.actions';
-import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
+import { loginFailure, loginRequest, loginSuccess, logout } from './auth.actions';
 import { User } from '../../shared/models/User';
 
 export interface State {
@@ -39,7 +38,7 @@ const _authReducer = createReducer(
   }),
 );
 
-export function authReducer(state: any, action: any) {
+export function authReducer(state= initialState, action: any) {
   return _authReducer(state, action);
 }
 export const selectAuthState = createFeatureSelector<State>('auth');

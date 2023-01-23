@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { emailValidator } from '../../../core/utility/validation-rule.service';
 import { Store } from '@ngrx/store';
 import * as AuthActions from '../../../state/auth/auth.actions';

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as fromAuth from '../../../state/auth/auth.reducer';
 import * as AuthActions from '../../../state/auth/auth.actions';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
