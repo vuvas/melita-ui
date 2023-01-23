@@ -46,5 +46,14 @@ export class AuthEffects {
           .logout()
     ),
   ),);
+  redirect$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(AuthActions.loginFailure),
+      tap(() => {
+        this.router.navigate(['/account/login']);
+      })
+    ),
+    { dispatch: false }
+  );
 
 }

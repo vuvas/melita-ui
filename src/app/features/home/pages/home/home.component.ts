@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   refreshInProgress: boolean = true;
-  countdown: number = 0;
+  countdown: number = 10;
 
   refresh() {
     this.store.dispatch(OfferActions.refreshData({
