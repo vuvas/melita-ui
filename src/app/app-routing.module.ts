@@ -4,7 +4,7 @@ import { AuthLayoutComponent } from './shared/layout/auth-layout/auth-layout.com
 import { MainLayoutComponent } from './shared/layout/main-layout/main-layout.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/home' },
+  { path: '', pathMatch: 'full', redirectTo: '/account/login' },
   {
     path: 'home',
     component: MainLayoutComponent,

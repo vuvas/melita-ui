@@ -1,7 +1,15 @@
+
+
 <section class="text-gray-600 body-font bg-gray-50 h-screen flex justify-center items-center">
+  <div>
+    <button (click)="refresh()" [disabled]="refreshInProgress"
+      class='w-full px-4 py-2  text-white outline hover:outline-2 transition-colors duration-300'>
+      Refresh (     <span *ngIf="refreshInProgress">{{ countdown }}</span> )
+    </button>
+  </div>
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap m-4 text-center">
-      <ng-container *ngFor="let ofr of offer.offers">
+      <ng-container *ngFor="let ofr of offers$ | async">
         <div class="p-4 sm:w-1/2 lg:w-1/3 w-full hover:scale-105 duration-500">
           <div class="flex items-center justify-between p-4 rounded-lg bg-white shadow-indigo-50 shadow-md">
             <div>
@@ -12,7 +20,7 @@
                 <span class="text-sm"> {{ ofr.contractStartDate | date }}</span>
                 - <span class="text-sm"> {{ ofr.contractEndDate | date }}</span>
               </p>
-              <button type="button" (click)="showNewsletter()"
+              <button type="button" (click)="showSubscriptions()"
                       class="text-sm mt-6 px-4 py-2 bg-[#065d94] text-white rounded-lg tracking-wider hover:bg-[#065d94] outline-none">
                 Subscriptions
               </button>

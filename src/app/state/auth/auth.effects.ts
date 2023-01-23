@@ -32,6 +32,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.loginSuccess),
         tap(({ loginSuccessResponse }) => {
+          localStorage.setItem('token', loginSuccessResponse.authToken);
           this.router.navigateByUrl('/home');
         }),
       ),
