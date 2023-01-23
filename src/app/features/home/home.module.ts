@@ -6,8 +6,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { SubscriptionComponent } from './pages/subscription/subscription.component';
 import { ModalModule } from '../../shared/modal/modal.module';
 import { StoreModule } from '@ngrx/store';
-import { offerReducer } from '../../state/offer/offer.reducer';
-import { OfferEffects } from '../../state/offer/offer.effects';
+import { offerReducer } from './state/offer/offer.reducer';
+import { OfferEffects } from './state/offer/offer.effects';
 import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({

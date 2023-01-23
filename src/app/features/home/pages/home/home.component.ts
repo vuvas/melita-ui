@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../shared/modal.service';
 import { select, Store } from '@ngrx/store';
-import * as offerActions from '../../../../state/offer/offer.actions';
-import * as fromOffer from '../../../../state/offer/offer.reducer';
+import * as offerActions from '../../state/offer/offer.actions';
+import * as fromOffer from '../../state/offer/offer.reducer';
 import { Observable } from 'rxjs';
-import { Offer } from '../../../../shared/models/Offer';
+import { Offer } from '../../models/Offer';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +12,15 @@ import { Offer } from '../../../../shared/models/Offer';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  offers$: Observable<Offer[]> | undefined;
-  constructor(private modalService: ModalService<any>, private store: Store<fromOffer.OfferState>) {}
+  offers$: Observable<any[]> | undefined;
+  constructor(private modalService: ModalService<any>, private store: Store<fromOffer.OfferState>,private subStore: Store<any>) {}
 
 
 
-  async showSubscriptions(): Promise<void> {
+  async showSubscriptions(offer:Offer): Promise<void> {
     const { SubscriptionComponent } = await import(
       '../subscription/subscription.component'
       );
-
     await this.modalService.open(SubscriptionComponent);
   }
 

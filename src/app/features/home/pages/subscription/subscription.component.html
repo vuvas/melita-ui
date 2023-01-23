@@ -1,6 +1,6 @@
 <app-modal #modalComponent>
   <div>
-    <ng-container *ngFor="let sub of subscription.subscriptions">
+    <ng-container *ngFor="let sub of subscriptionData$ | async">
       <div>
         <div class="py-4">
           <div class="font-bold text-xl text-[#065d94]">{{sub.name}}</div>

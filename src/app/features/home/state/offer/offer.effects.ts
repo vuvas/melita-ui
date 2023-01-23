@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { Action } from "@ngrx/store";
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 
-import { Observable, of } from "rxjs";
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { Observable, of } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import * as offerActions from './../offer/offer.actions';
-import { HomeService } from '../../features/home/home.service';
-import { Offer } from '../../shared/models/Offer';
+import * as offerActions from './offer.actions';
+import { HomeService } from '../../home.service';
+import { Offer } from '../../models/Offer';
 
 @Injectable()
 export class OfferEffects {

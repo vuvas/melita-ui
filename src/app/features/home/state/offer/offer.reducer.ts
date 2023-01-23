@@ -1,18 +1,19 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as offerAction from './offer.actions';
 import { OfferActionTypes } from './offer.actions';
-import { Offer, OfferResponseModel } from '../../shared/models/Offer';
-import * as fromRoot from '../AppState';
+import { Offer } from '../../models/Offer';
+import * as fromRoot from '../../../../state/AppState';
 
 export interface OfferState {
   offers: Offer[],
+  selectedOffer: number | null,
   loading: boolean,
   loaded: boolean,
   error?: string;
 }
 
 export const initialState: OfferState = {
-  offers: [], loading: false, loaded: false, error: '',
+  offers: [], loading: false, loaded: false, error: '',selectedOffer : null
 };
 
 export interface AppState extends fromRoot.AppState {

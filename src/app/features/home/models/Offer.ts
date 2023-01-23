@@ -5,14 +5,6 @@ export class Offer {
   contractEndDate!: string;
 }
 
-export class Subscription {
-  id!: number;
-  name!: string;
-  type!: string;
-  line?: number;
-  usage?: Array<Usage>;
-}
-
 export class Usage {
   type!: string;
   used!: number;
@@ -27,6 +19,4 @@ export class OfferResponseModel extends ApiBase {
   offers!: Array<Offer>;
 }
 
-export class SubscriptionModel extends ApiBase {
-  subscriptions!: Array<Subscription>;
-}
+

@@ -1,49 +1,34 @@
-import { Component, ViewChild } from '@angular/core';
-import { SubscriptionModel } from '../../../../shared/models/Offer';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from '../../../../shared/modal/modal.component';
+import { select, Store } from '@ngrx/store';
+import * as fromSubscription from '../../state/subscription/subscription.reducer';
+import { Observable } from 'rxjs';
+import { SubscriptionModel } from '../../models/subscription';
+import { Offer } from '../../models/Offer';
+import * as subscriptionActions from '../../state/subscription/subscription.actions';
 
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',
   styleUrls: ['./subscription.component.scss']
 })
-export class SubscriptionComponent {
+export class SubscriptionComponent implements OnInit{
   @ViewChild('modalComponent') modal:
     | ModalComponent<SubscriptionComponent>
     | undefined;
+  subscriptionData$: Observable<SubscriptionModel[]> | undefined;
+  public selectedOffer: Offer = {} as Offer;
+  public selectedOfferId!: number;
 
-  subscription: SubscriptionModel = {
-    subscriptions: [
-      {
-        id: 402,
-        name: 'Essential Mobile',
-        type: 'MOBILE',
-        line: 0,
-        usage: [
-          {
-            type: 'DATA',
-            used: 10,
-            limit: 1024,
-          },
-          {
-            type: 'SMS',
-            used: 287,
-            limit: 300,
-          },
-        ],
-      },
-    ],
-    status: 0,
-  };
+  constructor(private store: Store<fromSubscription.SubscriptionState>) {
 
-  constructor() {
-    this.subscription.subscriptions.sort(function (a, b) {
-      if (a.name === b.name) {
-        // Line is only important when names are the same
-        return (b.line ?? 0) - (a.line ?? 0);
-      }
-      return a.name > b.name ? 1 : -1;
-    });
+  }
+
+  ngOnInit():void {
+    this.store.dispatch(new subscriptionActions.LoadSubscriptions(this.selectedOfferId));
+
+    this.subscriptionData$ = this.store.pipe(select(fromSubscription.getSubscriptions));
+
   }
 
   async close(): Promise<void> {
