@@ -14,8 +14,10 @@ import { authReducer } from './state/auth/auth.reducer';
 import { AuthEffects } from './state/auth/auth.effects';
 import { OfferEffects } from './state/offer/offer.effects';
 import { offerReducer } from './state/offer/offer.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [AppComponent],
   imports: [
     BrowserModule,
@@ -26,10 +28,10 @@ import { offerReducer } from './state/offer/offer.reducer';
     ReactiveFormsModule,
     SharedModule,
     CoreModule,
-    StoreModule.forRoot({ auth: authReducer, offer: offerReducer }),
-    EffectsModule.forRoot([AuthEffects,OfferEffects]),
+    StoreModule.forRoot({ auth: authReducer}),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

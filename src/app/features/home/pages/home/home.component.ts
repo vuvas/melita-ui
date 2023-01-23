@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../shared/modal.service';
 import { select, Store } from '@ngrx/store';
-import * as OfferActions from '../../../../state/offer/offer.actions';
-import { selectOfferModel, selectOffers } from '../../../../state/offer/offer.reducer';
+import * as offerActions from '../../../../state/offer/offer.actions';
+import * as fromOffer from '../../../../state/offer/offer.reducer';
+import { Observable } from 'rxjs';
+import { Offer } from '../../../../shared/models/Offer';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +12,8 @@ import { selectOfferModel, selectOffers } from '../../../../state/offer/offer.re
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private modalService: ModalService<any>, private store: Store) {
-    this.store.dispatch(OfferActions.offerRequest());
-
-  }
-  offers$ = this.store.pipe(select(selectOffers));
+  offers$: Observable<Offer[]> | undefined;
+  constructor(private modalService: ModalService<any>, private store: Store<fromOffer.OfferState>) {}
 
 
 
@@ -27,16 +26,18 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(new offerActions.LoadOffers());
+    this.offers$ = this.store.pipe(select(fromOffer.getOffers));
   }
 
   refreshInProgress: boolean = true;
   countdown: number = 10;
 
   refresh() {
-    this.store.dispatch(OfferActions.refreshData({
-      refreshInProgress: this.refreshInProgress,
-      countdown: this.countdown,
-    }));
+    // this.store.dispatch(OfferActions.refreshData({
+    //   refreshInProgress: this.refreshInProgress,
+    //   countdown: this.countdown,
+    // }));
   }
 
 }

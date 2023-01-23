@@ -1,23 +1,22 @@
-import { createAction, props } from '@ngrx/store';
-import { Offer, OfferModel } from '../../shared/models/Offer';
+import { Action } from '@ngrx/store';
+import { Offer } from '../../shared/models/Offer';
 
-export const offerRequest = createAction(
-  '[Offer] Request'
-);
-export const refreshData = createAction(
-  '[Offer] Refresh data',
-  props<{ refreshInProgress:boolean,countdown:number }>()
-);
+export enum OfferActionTypes {
+  LOAD_OFFERS = '[Offer] Load Offers',
+  LOAD_OFFERS_SUCCESS = '[Offer] Load Offers Success',
+  LOAD_OFFERS_FAIL = '[Offer] Load Offers Fail'
+}
 
-
-export const refreshSuccess = createAction(
-  '[Offer] refresh period ended',
-);
-export const offerSuccess = createAction(
-  '[Offer] Success',
-  props<{ successResponse: Offer[] }>()
-);
-export const offerFailure = createAction(
-  '[Offer] Login Failure',
-  props<{ error: string }>()
-);
+export class LoadOffers implements Action {
+  readonly type = OfferActionTypes.LOAD_OFFERS
+}
+export class LoadOffersSuccess implements Action {
+  readonly type = OfferActionTypes.LOAD_OFFERS_SUCCESS
+  constructor(public payload: Offer[]) {
+  }
+}
+export class LoadOffersFail implements Action {
+  readonly type = OfferActionTypes.LOAD_OFFERS_FAIL
+  constructor(public payload: string) {}
+}
+export type OfferAction = LoadOffers | LoadOffersSuccess | LoadOffersFail;

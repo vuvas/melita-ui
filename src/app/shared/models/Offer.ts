@@ -23,7 +23,7 @@ export class ApiBase {
   status!: number;
 }
 
-export class OfferModel extends ApiBase {
+export class OfferResponseModel extends ApiBase {
   offers!: Array<Offer>;
 }
 
