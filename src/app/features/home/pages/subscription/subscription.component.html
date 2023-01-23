@@ -1,0 +1,37 @@
+<app-modal #modalComponent>
+  <div>
+    <ng-container *ngFor="let sub of subscription.subscriptions">
+      <div>
+        <div class="py-4">
+          <div class="font-bold text-xl text-[#065d94]">{{sub.name}}</div>
+          <span class="text-[#065d94]">
+                        {{sub.type}}
+                    </span>
+        </div>
+        <ul class="ax-w-xs flex flex-col">
+
+          <li *ngFor="let usg of sub.usage"
+              class="inline-flex items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-[#065d94] -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+            <div class="flex justify-between w-full">
+              {{usg.type}}
+              <span
+                class="inline-flex items-center py-1 px-2 rounded-full text-xs font-medium bg-[#29be76] text-white">{{usg.used}}
+                / {{usg.limit}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+
+    <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+  </div>
+</app-modal>
+
+<ng-template #toolbar>
+  <div class="py-3 flex justify-end">
+    <button (click)="close()" type="button"
+            class="rounded-md shadow-lg sm:tracking-wider mx-2 px-4 py-2 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-[#065d94] sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+      Close
+    </button>
+  </div>
+</ng-template>
