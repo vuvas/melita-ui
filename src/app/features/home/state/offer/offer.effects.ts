@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
-import { Observable, of } from 'rxjs';
+import {exhaustMap, finalize, interval, Observable, of, take, tap} from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import * as offerActions from './offer.actions';
@@ -33,17 +33,18 @@ export class OfferEffects {
     );
   })
 
-/*  offerRefresh$ = createEffect(() => {
-      return this.actions$.pipe(
-        ofType(OfferActions.refreshData),
-        exhaustMap((action) =>
-            interval(5000).pipe(
-              take(action.countdown),
-              tap(() => action.countdown--),
-              finalize(() => action.refreshInProgress = false),
-            )),
-        )
-    });*/
+  // refreshOffers$: Observable<Action> = createEffect(() => {
+  //     return this.actions$.pipe(
+  //       ofType<offerActions.RefreshOffers>(
+  //         offerActions.OfferActionTypes.REFRESH_OFFERS
+  //       ),        exhaustMap((action) =>
+  //           interval(5000).pipe(
+  //             take(action.countdown),
+  //             tap(() => action.countdown--),
+  //             finalize(() => action.refreshInProgress = false),
+  //           )),
+  //       )
+  //   });
 
 
 

@@ -10,6 +10,7 @@ export interface OfferState {
   loading: boolean,
   loaded: boolean,
   error?: string;
+  refreshData?: any;
 }
 
 export const initialState: OfferState = {
@@ -46,6 +47,12 @@ export function offerReducer(
         loaded: false,
         offers: [],
         error: action.payload,
+      };
+    }
+    case OfferActionTypes.REFRESH_OFFERS: {
+      return {
+        ...state,
+        refreshData: action.payload,
       };
     }
     default: {

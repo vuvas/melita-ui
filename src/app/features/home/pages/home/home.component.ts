@@ -7,6 +7,7 @@ import * as fromOffer from '../../state/offer/offer.reducer';
 import { Observable, take, tap } from 'rxjs';
 import { Offer } from '../../models/Offer';
 import { Router } from '@angular/router';
+import {RefreshOffers} from "../../state/offer/offer.actions";
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
     const { SubscriptionComponent } = await import(
       '../subscription/subscription.component'
       );
-    //CAN YOU FIND WAY TO SEND OFFER ID FROM THIS TO CHILD COMPONENT?
+    //TODO: CAN YOU FIND WAY TO SEND OFFER ID FROM THIS TO CHILD COMPONENT?
     await this.modalService.open(SubscriptionComponent);
   }
 
@@ -39,10 +40,10 @@ export class HomeComponent implements OnInit {
   countdown: number = 10;
 
   refresh() {
-    // this.store.dispatch(OfferActions.refreshData({
-    //   refreshInProgress: this.refreshInProgress,
-    //   countdown: this.countdown,
-    // }));
+    this.store.dispatch(new offerActions.RefreshOffers({
+      refreshInProgress: this.refreshInProgress,
+      countdown: this.countdown,
+    }));
   }
 
 }
