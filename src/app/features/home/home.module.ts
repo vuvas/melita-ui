@@ -9,12 +9,15 @@ import { StoreModule } from '@ngrx/store';
 import { offerReducer } from './state/offer/offer.reducer';
 import { OfferEffects } from './state/offer/offer.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { SubscriptionEffects } from './state/subscription/subscription.effects';
+import { subscriptionReducer } from './state/subscription/subscription.reducer';
 
 @NgModule({
   declarations: [HomeComponent, SubscriptionComponent],
   imports: [CommonModule, HomeRoutingModule, ModalModule,
     StoreModule.forFeature("offer", offerReducer),
-    EffectsModule.forFeature([OfferEffects]),
+    StoreModule.forFeature("offer_sub", subscriptionReducer),
+    EffectsModule.forFeature([OfferEffects,SubscriptionEffects]),
   ],
 
 

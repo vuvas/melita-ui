@@ -8,10 +8,10 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import * as subscriptionActions from './subscription.actions';
 import { HomeService } from '../../home.service';
-import { SubscriptionModel } from '../../models/Offer';
+import { SubscriptionModel } from '../../models/subscription';
 
 @Injectable()
-export class OfferEffects {
+export class SubscriptionEffects {
   constructor(private actions$: Actions, private homeService: HomeService, private router: Router,
   ) {
   }

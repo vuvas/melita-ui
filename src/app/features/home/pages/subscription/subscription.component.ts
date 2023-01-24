@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { SubscriptionModel } from '../../models/subscription';
 import { Offer } from '../../models/Offer';
 import * as subscriptionActions from '../../state/subscription/subscription.actions';
+import * as fromOffer from '../../state/offer/offer.reducer';
 
 @Component({
   selector: 'app-subscription',
@@ -17,6 +18,8 @@ export class SubscriptionComponent implements OnInit{
     | ModalComponent<SubscriptionComponent>
     | undefined;
   subscriptionData$: Observable<SubscriptionModel[]> | undefined;
+  isLoading$: Observable<boolean> | undefined;
+
   public selectedOffer: Offer = {} as Offer;
   public selectedOfferId: number = 101;
 
@@ -28,6 +31,8 @@ export class SubscriptionComponent implements OnInit{
     this.store.dispatch(new subscriptionActions.LoadSubscriptions(this.selectedOfferId));
 
     this.subscriptionData$ = this.store.pipe(select(fromSubscription.getSubscriptions));
+    this.isLoading$ = this.store.pipe(select(fromSubscription.getSubscriptionsLoading));
+
 
   }
 

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../shared/modal.service';
 import { select, Store } from '@ngrx/store';
 import * as offerActions from '../../state/offer/offer.actions';
+import * as fromAuth from '../../../../state/auth/auth.reducer';
 import * as fromOffer from '../../state/offer/offer.reducer';
-import { Observable } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { Offer } from '../../models/Offer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,8 @@ import { Offer } from '../../models/Offer';
 export class HomeComponent implements OnInit {
   offers$: Observable<any[]> | undefined;
   isLoading$: Observable<boolean> | undefined;
-  constructor(private modalService: ModalService<any>, private store: Store<fromOffer.OfferState>,private subStore: Store<any>) {}
+  isAuthenticated$: Observable<boolean> | undefined;
+  constructor(private modalService: ModalService<any>,private router:Router, private store: Store<fromOffer.OfferState>,private authStore: Store<fromAuth.State>) {}
 
 
 

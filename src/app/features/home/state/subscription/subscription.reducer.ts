@@ -15,7 +15,7 @@ export const initialState: SubscriptionState = {
 };
 
 
-export function offerReducer(
+export function subscriptionReducer(
   state: SubscriptionState = initialState,
   action: subscriptionAction.SubscriptionAction,
 ): SubscriptionState {
