@@ -6,14 +6,4 @@ html,
 body {
   height: 100%;
 }
-body {
-}
-body {
-  margin: 0;
-  font-family: Mulish;
-}
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  height: 100vh;
-}
+

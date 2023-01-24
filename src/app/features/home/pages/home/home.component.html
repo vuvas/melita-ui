@@ -1,33 +1,59 @@
-
-
-<section class="text-gray-600 body-font bg-gray-50 h-screen flex justify-center items-center">
-  <div>
-    <button (click)="refresh()" [disabled]="refreshInProgress"
-      class='w-full px-4 py-2  text-white outline hover:outline-2 transition-colors duration-300'>
-      Refresh (     <span *ngIf="refreshInProgress">{{ countdown }}</span> )
-    </button>
-  </div>
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-wrap m-4 text-center">
-      <ng-container *ngFor="let ofr of offers$ | async">
-        <div class="p-4 sm:w-1/2 lg:w-1/3 w-full hover:scale-105 duration-500">
-          <div class="flex items-center justify-between p-4 rounded-lg bg-white shadow-indigo-50 shadow-md">
-            <div>
-              <h3 class="mt-2 text-xl font-bold text-[#065d94] text-left">
-                {{ ofr.name }}
-              </h3>
-              <p class="text-sm font-semibold text-gray-400">
-                <span class="text-sm"> {{ ofr.contractStartDate | date }}</span>
-                - <span class="text-sm"> {{ ofr.contractEndDate | date }}</span>
-              </p>
-              <button type="button" (click)="showSubscriptions(ofr)"
-                      class="text-sm mt-6 px-4 py-2 bg-[#065d94] text-white rounded-lg tracking-wider hover:bg-[#065d94] outline-none">
-                Subscriptions
-              </button>
+<div class='mt-5 grid grid-cols-6 justify-center' *ngIf="(isLoading$ | async); else dataBlock">
+  <div class='col-span-6'>
+    <div class="border border-blue-300 shadow rounded-md p-4 max-w-screen-md w-full mx-auto">
+      <div class="animate-pulse flex space-x-4">
+        <div class="rounded-full bg-blue-200 h-10 w-10"></div>
+        <div class="flex-1 space-y-6 py-1">
+          <div class="h-2 bg-blue-200 rounded"></div>
+          <div class="space-y-3">
+            <div class="grid grid-cols-3 gap-4">
+              <div class="h-2 bg-blue-200 rounded col-span-2"></div>
+              <div class="h-2 bg-blue-200 rounded col-span-1"></div>
             </div>
           </div>
         </div>
-      </ng-container>
+      </div>
+    </div>  </div>
+</div>
+<ng-template #dataBlock>
+  <!--OFFER CARD-->
+  <section class='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-6'>
+    <div class='col-span-4'>
     </div>
-  </div>
-</section>
+    <div class='col-span-2 '>
+      <div class='mt-5 grid grid-cols-1 gap-4 justify-end'>
+        <button (click)='refresh()' [disabled]='refreshInProgress'
+                class=' px-4 py-2  outline hover:outline-2 transition-colors duration-300'>
+          Refresh ( <span *ngIf='refreshInProgress'>{{ countdown }}</span> )
+        </button>
+      </div>
+    </div>
+    <div class='col-span-6'>
+      <div>
+        <dl class='mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4'>
+          <div *ngFor='let offer of offers$ | async' (click)='showSubscriptions(offer)'
+               class='overflow-hidden rounded-lg bg-green-600 px-4 py-5 shadow sm:p-6 cursor-pointer
+            hover:-tranblue-y-0.5 hover:scale-y-105 duration-300
+            hover:bg-green-800'>
+            <div class='relative w-auto flex-initial pl-4'>
+              <div
+                class='inline-flex h-16 w-16 items-center bg-yellow-500  justify-center rounded-full text-center text-black shadow-lg'>
+                <svg  class='h-8 w-8 ' width='24' height='24' id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 122.88"><title>offer</title><path d="M13.7,49.54,8,33.63a3.47,3.47,0,0,1,2.1-4.44,3.93,3.93,0,0,1,.81-.18L27.3,27.3,29,10.79a3.47,3.47,0,0,1,3.81-3.1,2.9,2.9,0,0,1,.71.15l16,4.11L58.8,1.21A3.49,3.49,0,0,1,63.7.83a3.91,3.91,0,0,1,.61.68l9,12.17,15.91-5.8A3.48,3.48,0,0,1,93.69,10a3.44,3.44,0,0,1,.19.83l1.7,16.51L112.09,29a3.47,3.47,0,0,1,2.71,5.09l-7.3,13.77,14,10.83a3.46,3.46,0,0,1,.62,4.87,3.18,3.18,0,0,1-.72.7L109.2,73.33,115,89.24a3.48,3.48,0,0,1-2.08,4.45,3.44,3.44,0,0,1-.83.19l-16.51,1.7L93.88,112a3.48,3.48,0,0,1-3.81,3.1,3.61,3.61,0,0,1-1.27-.38L75,107.49l-10.85,14a3.46,3.46,0,0,1-5.57-.1l-9.08-12.25-15.91,5.74A3.47,3.47,0,0,1,29,112.05L27.3,97.29,10.53,93.82a3.46,3.46,0,0,1-2.7-4.09A2.62,2.62,0,0,1,8,89.11L13.7,73.34,1.4,64.23a3.48,3.48,0,0,1-.72-4.86,3.42,3.42,0,0,1,.77-.75L13.7,49.54Zm62.39-6.2L55.66,78.86a6.86,6.86,0,0,1-.67,1,2.76,2.76,0,0,1-.82.71,3.14,3.14,0,0,1-1.1.31,10.25,10.25,0,0,1-1.31.07H47.9a1.16,1.16,0,0,1-1.16-1.15,1.18,1.18,0,0,1,.21-.67L67.39,43.57a7.2,7.2,0,0,1,.65-1l0-.06a2.84,2.84,0,0,1,.78-.65A3.15,3.15,0,0,1,70,41.59h0a10,10,0,0,1,1.29-.07h3.85a1.16,1.16,0,0,1,1.16,1.15,1.18,1.18,0,0,1-.21.67Zm-7.4,36.07c-1.72-1.8-2.59-4.56-2.59-8.28s.87-6.48,2.59-8.28,4.52-2.7,8.4-2.7,6.68.9,8.4,2.7,2.58,4.56,2.58,8.28-.86,6.48-2.58,8.28-4.52,2.7-8.4,2.7-6.68-.9-8.4-2.7Zm6-11.44v8h1.3a16.21,16.21,0,0,0,3.27-.26c.22-.18.33-.67.33-1.46v-8h-3a3,3,0,0,0-1.58.26c-.21.18-.32.67-.32,1.46ZM37.39,60q-2.58-2.7-2.58-8.28t2.58-8.28q2.58-2.7,8.4-2.7t8.4,2.7q2.58,2.7,2.58,8.28T54.19,60q-2.58,2.7-8.4,2.7T37.39,60Zm6-11.44v8h3a2.93,2.93,0,0,0,1.57-.27c.22-.18.33-.67.33-1.46v-8H46.93a15.28,15.28,0,0,0-3.26.27c-.22.17-.33.66-.33,1.45ZM16,35.46l5,14a3.48,3.48,0,0,1-1.14,4.13L9.3,61.44,19.9,69.3a3.48,3.48,0,0,1,1.2,4L15.84,87.84,31,91a3.48,3.48,0,0,1,3,3.05l1.49,12.9,14.05-5.06A3.47,3.47,0,0,1,53.59,103l7.91,10.68,9.74-12.61A3.48,3.48,0,0,1,75.69,100l11.81,6.21L89,92.1A3.47,3.47,0,0,1,92.06,89L107,87.43,101.8,73.32a3.46,3.46,0,0,1,1.18-4l10.67-7.92-12.52-9.67A3.5,3.5,0,0,1,100,47.18l6.26-11.8L92.1,33.93A3.48,3.48,0,0,1,89,30.82L87.43,15.93,73.32,21.08a3.48,3.48,0,0,1-4-1.18L61.24,9l-7.8,9.07a3.48,3.48,0,0,1-3.5,1.1L35.5,15.5,33.92,30.78a3.47,3.47,0,0,1-3.1,3.14L16,35.46Z"/></svg>
+              </div>
+            </div>
+            <dd class='mt-5 pb-1 pl-4 text-5xl font-semibold text-white'>
+              {{ offer.name}}
+            </dd>
+            <dt class='text-lg mb-5 pl-4 font-medium text-white line-clamp-2'>
+              <span class='text-sm'> {{ offer.contractStartDate | date }}</span>
+              - <span class='text-sm'> {{ offer.contractEndDate | date }}</span>
+              </dt>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+
+

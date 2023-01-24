@@ -13,6 +13,7 @@ import { Offer } from '../../models/Offer';
 })
 export class HomeComponent implements OnInit {
   offers$: Observable<any[]> | undefined;
+  isLoading$: Observable<boolean> | undefined;
   constructor(private modalService: ModalService<any>, private store: Store<fromOffer.OfferState>,private subStore: Store<any>) {}
 
 
@@ -21,12 +22,14 @@ export class HomeComponent implements OnInit {
     const { SubscriptionComponent } = await import(
       '../subscription/subscription.component'
       );
+    //CAN YOU FIND WAY TO SEND OFFER ID FROM THIS TO CHILD COMPONENT?
     await this.modalService.open(SubscriptionComponent);
   }
 
   ngOnInit(): void {
     this.store.dispatch(new offerActions.LoadOffers());
     this.offers$ = this.store.pipe(select(fromOffer.getOffers));
+    this.isLoading$ = this.store.pipe(select(fromOffer.getOffersLoading));
   }
 
   refreshInProgress: boolean = true;

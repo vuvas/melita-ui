@@ -9,7 +9,7 @@ export class ValidationRuleService {
 }
 
 export function emailValidator(control: FormControl) {
-  return isEmail(control.value) ? null : { email: true };
+  return isEmail(control.value) ? null : { invalidEmail: true };
 }
 export function isEmail(value: string): boolean {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

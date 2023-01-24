@@ -18,7 +18,7 @@ export class SubscriptionComponent implements OnInit{
     | undefined;
   subscriptionData$: Observable<SubscriptionModel[]> | undefined;
   public selectedOffer: Offer = {} as Offer;
-  public selectedOfferId!: number;
+  public selectedOfferId: number = 101;
 
   constructor(private store: Store<fromSubscription.SubscriptionState>) {
 

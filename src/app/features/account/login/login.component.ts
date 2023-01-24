@@ -16,7 +16,6 @@ export class LoginComponent {
     password: ['', Validators.required],
     remember: [false, null],
   });
-
   onSubmit() {
     if (this.form.valid) {
       const credentials =  {
